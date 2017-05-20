@@ -18,8 +18,5 @@ renderApp();
 
 // Hot module reloading
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    console.log('updating!');
-    renderApp();
-  });
+  module.hot.accept('./components/App', renderApp);
 }

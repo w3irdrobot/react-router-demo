@@ -31,9 +31,11 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "babel-runtime": "^6.23.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "lodash.times": "^4.3.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "semantic-ui-css": "^2.2.10",
