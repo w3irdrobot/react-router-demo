@@ -70,7 +70,9 @@ app.use('/api', apiRouter);
 if (NODE_ENV !== 'production') {
   const compiler = webpack(webpackConfig);
 
-  app.use(webpackDevMiddleware(compiler, { stats: { colors: true } }));
+  app.use(webpackDevMiddleware(compiler, {
+    stats: { colors: true }
+  }));
   app.use(webpackHotMiddleware(compiler));
 } else {
   app.use(express.static(resolve(__dirname, 'client')));
@@ -83,5 +85,5 @@ if (NODE_ENV !== 'production') {
 const server = http.createServer(app);
 
 server.listen(PORT, () => {
-  console.log(`The server is running at localhost:${PORT}`);
+  console.log(`The server is running at http://localhost:${PORT}`);
 });
