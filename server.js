@@ -1,12 +1,12 @@
 import http from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
-import webpackConfig from '../webpack.config';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { resolve } from 'path';
-import users from '../users.json';
+import webpackConfig from '../webpack.config'; // eslint-disable-line
+import users from './users.json';
 
 const { NODE_ENV = 'development', PORT = 3000 } = process.env;
 
@@ -36,9 +36,9 @@ apiRouter.route('/users/:id')
     const { id } = req.params;
     const user = users.find(u => u.id === id * 1);
 
-    if (user) return res.sendStatus(404);
+    if (!user) return res.sendStatus(404);
 
-    res.json(user);
+    return res.json(user);
   })
   .patch((req, res) => {
     const { body, params: { id } } = req;
@@ -50,7 +50,7 @@ apiRouter.route('/users/:id')
 
     users[userIndex] = { ...user, ...body };
 
-    res.json(users[userIndex]);
+    return res.json(users[userIndex]);
   })
   .delete((req, res) => {
     const { id } = req.params;
@@ -62,7 +62,7 @@ apiRouter.route('/users/:id')
 
     users.splice(userIndex, 1);
 
-    res.json(user);
+    return res.json(user);
   });
 
 app.use('/api', apiRouter);
@@ -71,7 +71,7 @@ if (NODE_ENV !== 'production') {
   const compiler = webpack(webpackConfig);
 
   app.use(webpackDevMiddleware(compiler, {
-    stats: { colors: true }
+    stats: { colors: true },
   }));
   app.use(webpackHotMiddleware(compiler));
 } else {

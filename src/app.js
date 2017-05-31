@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'semantic-ui-css/semantic.min.css';
 import { AppContainer } from 'react-hot-loader';
 import App from './components/App';
-import 'semantic-ui-css/semantic.min.css';
 
 const root = document.getElementById('app-container');
 
-const renderApp = () =>
+const renderApp = () => {
   ReactDOM.render(
     <AppContainer>
       <App />
     </AppContainer>
-    , root
+    , root,
   );
+};
 
 renderApp();
 

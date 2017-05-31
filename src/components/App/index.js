@@ -1,19 +1,20 @@
 import React from 'react';
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
 import styles from './styles.css';
-import Users from '../Users';
+import UserEdit from '../UserEdit';
 
-const App = () =>
+const App = () => (
   <div id="app">
-    <Sidebar as={Menu} inverted visible vertical width='thin' icon='labeled'>
-      <Menu.Item name='users'>
-        <Icon name='users' />
-        Users
+    <Sidebar as={Menu} inverted visible vertical width="thin" icon="labeled">
+      <Menu.Item name="users">
+        <Icon name="users" />
+        User
       </Menu.Item>
     </Sidebar>
     <div className={styles.mainBody}>
-      <Users />
+      <UserEdit />
     </div>
-  </div>;
+  </div>
+);
 
 export default App;

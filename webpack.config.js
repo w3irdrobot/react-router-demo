@@ -9,18 +9,17 @@ const SRC = resolve(ROOT, 'src');
 const onlyIn = env => plugin =>
   NODE_ENV === env ? plugin : null;
 const onlyInDev = onlyIn('development');
-const onlyInProd = onlyIn('production');
 
 module.exports = {
   devtool: NODE_ENV !== 'production' ? 'cheap-module-eval-source-map' : false,
   entry: [
     onlyInDev('react-hot-loader/patch'),
     onlyInDev('webpack-hot-middleware/client'),
-    resolve(SRC, 'app.js')
+    resolve(SRC, 'app.js'),
   ].filter(Boolean),
   output: {
     filename: 'app.[hash].js',
-    path: resolve(ROOT, 'dist', 'client')
+    path: resolve(ROOT, 'dist', 'client'),
   },
   module: {
     rules: [
@@ -31,20 +30,21 @@ module.exports = {
           options: {
             babelrc: false,
             presets: [
-              ["env", {
-                "targets": {
-                  "browsers": "last 2 versions"
+              ['env', {
+                targets: {
+                  browsers: 'last 2 versions',
                 },
-                "modules": false
+                modules: false,
               }],
-              'react'
+              'react',
             ],
             plugins: [
-              onlyInDev('react-hot-loader/babel')
-            ].filter(Boolean)
-          }
+              onlyInDev('react-hot-loader/babel'),
+              'transform-object-rest-spread',
+            ].filter(Boolean),
+          },
         }],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -57,32 +57,32 @@ module.exports = {
               camelCase: true,
               sourceMap: true,
               importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
-          }
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-        include: /node_modules/
+        include: /node_modules/,
       },
       {
         test: /\.(png|eot|woff2?|ttf|svg)$/,
-        use: ['url-loader?limit=10000']
-      }
-    ]
+        use: ['url-loader?limit=10000'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: resolve(SRC, 'index.html')
+      template: resolve(SRC, 'index.html'),
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
     }),
     onlyInDev(new webpack.HotModuleReplacementPlugin()),
     onlyInDev(new webpack.NoEmitOnErrorsPlugin()),
-    onlyInDev(new webpack.NamedModulesPlugin())
-  ].filter(Boolean)
-}
+    onlyInDev(new webpack.NamedModulesPlugin()),
+  ].filter(Boolean),
+};
