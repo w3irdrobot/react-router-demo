@@ -5,8 +5,8 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { resolve } from 'path';
-import webpackConfig from '../webpack.config'; // eslint-disable-line
-import users from './users.json';
+import webpackConfig from '../../webpack.config';
+import users from '../../users.json';
 
 const { NODE_ENV = 'development', PORT = 3000 } = process.env;
 
@@ -67,19 +67,21 @@ apiRouter.route('/users/:id')
 
 app.use('/api', apiRouter);
 
-if (NODE_ENV !== 'production') {
+if (NODE_ENV === 'production') {
+  const FE_DIR = resolve(__dirname, '..', 'client');
+
+  app.use(express.static(FE_DIR));
+
+  app.get('/', (req, res) => {
+    res.sendFile(resolve(FE_DIR, 'index.html'));
+  });
+} else {
   const compiler = webpack(webpackConfig);
 
   app.use(webpackDevMiddleware(compiler, {
     stats: { colors: true },
   }));
   app.use(webpackHotMiddleware(compiler));
-} else {
-  app.use(express.static(resolve(__dirname, 'client')));
-
-  app.get('/', (req, res) => {
-    res.sendFile(resolve(__dirname, 'client', 'index.html'));
-  });
 }
 
 const server = http.createServer(app);

@@ -1,16 +1,24 @@
 {
   "name": "react-router-demo",
   "version": "1.0.0",
+  "author": "Alex Sears <me@alexsears.com> (http://alexsears.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/searsaw/react-router-demo.git"
+  },
+  "engines": {
+    "node": "6.10.3"
+  },
   "scripts": {
     "clear": "rimraf -rf dist",
     "lint": "eslint server.js \"src/**/*.js\"",
     "prebuild": "npm run clear",
-    "build:server": "babel -d dist/ server.js && copy users.json dist",
+    "build:server": "babel -d dist/server ./src/server/",
     "build:client": "webpack",
     "build": "npm run build:client && npm run build:server",
-    "dev": "nodemon --ignore dist/ --ignore src/ --exec \"npm run build:server && node dist/server.js\"",
+    "dev": "nodemon --ignore dist/ --ignore src/ --exec \"npm run build:server && node dist/server/index.js\"",
     "prestart": "npm run build",
-    "start": "node dist/server.js"
+    "start": "node dist/server/index.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -28,6 +36,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
     "nodemon": "^1.11.0",
