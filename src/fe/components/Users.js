@@ -3,6 +3,7 @@ import { Table, Menu, Icon } from 'semantic-ui-react';
 import { get } from 'axios';
 import times from 'lodash.times';
 import Page from './Page';
+import UserInfo from './UserInfo';
 
 const TOTAL_PER_PAGE = 10;
 
@@ -101,6 +102,7 @@ class Users extends React.Component {
             </Table.Row>
           </Table.Footer>
         </Table>
+        {/*<UserInfo user={users[0]} />*/}
       </Page>
     );
   }

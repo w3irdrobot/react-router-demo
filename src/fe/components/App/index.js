@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
 import styles from './styles.css';
-import UserEdit from '../UserEdit';
+import FourOhFour from '../FourOhFour';
 
 const App = () => (
   <div id="app">
@@ -12,7 +12,7 @@ const App = () => (
       </Menu.Item>
     </Sidebar>
     <div className={styles.mainBody}>
-      <UserEdit />
+      <FourOhFour />
     </div>
   </div>
 );

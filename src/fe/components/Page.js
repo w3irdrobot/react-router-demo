@@ -5,7 +5,7 @@ const Page = ({ children, title, columns = 1 }) =>
   (<div>
     <Grid columns={columns} padded>
       <Grid.Column>
-        <Header as="h1">{title}</Header>
+        {title && <Header as="h1">{title}</Header>}
         {children}
       </Grid.Column>
     </Grid>
