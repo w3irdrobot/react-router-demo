@@ -1,33 +1,20 @@
 import React from 'react';
-import { get, patch } from 'axios';
+import { post } from 'axios';
 import UserForm from './UserForm';
 import Page from './Page';
 
-class UserEdit extends React.Component {
+class UserAdd extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      user: {},
-    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  componentDidMount() {
-    get('/api/users/1')
-      .then(({ data: user }) => {
-        this.setState({ user });
-      });
-  }
-
   handleSubmit(user) {
-    patch(`/api/users/${user.id}`, user)
+    post('/api/users', user)
       .then(() => {
-        this.setState({ user });
-
-        console.log('updated:', user);
+        console.log('added:', user);
       });
   }
 
@@ -38,13 +25,9 @@ class UserEdit extends React.Component {
   }
 
   render() {
-    const { user } = this.state;
-
     return (
-      <Page title="Edit User" columns={3}>
+      <Page title="Add User" columns={3}>
         <UserForm
-          user={user}
-          submitText="Update"
           handleSubmit={this.handleSubmit}
           handleCancel={this.handleCancel}
         />
@@ -53,4 +36,4 @@ class UserEdit extends React.Component {
   }
 }
 
-export default UserEdit;
+export default UserAdd;

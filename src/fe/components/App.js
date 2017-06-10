@@ -1,6 +1,6 @@
 import React from 'react';
-import Login from './Login';
+import Cms from './Cms';
 
-const App = () => <Login />;
+const App = () => <Cms />;
 
 export default App;

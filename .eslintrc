@@ -9,6 +9,7 @@
     "react/prop-types": "off",
     "no-console": "off",
     "no-confusing-arrow": "off",
-    "consistent-return":"off"
+    "consistent-return":"off",
+    "class-methods-use-this": "off"
   }
 }

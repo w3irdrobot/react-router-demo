@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Menu, Icon } from 'semantic-ui-react';
+import { Table, Menu, Icon, Button } from 'semantic-ui-react';
 import { get } from 'axios';
 import times from 'lodash.times';
 import Page from './Page';
@@ -19,6 +19,8 @@ class Users extends React.Component {
     this.incrementPage = this.incrementPage.bind(this);
     this.decrementPage = this.decrementPage.bind(this);
     this.setPage = this.setPage.bind(this);
+    this.handleNewUser = this.handleNewUser.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +53,18 @@ class Users extends React.Component {
     const { page } = this.state;
 
     this.setState({ page: page + 1 });
+  }
+
+  handleNewUser() {
+    console.log('new user clicked');
+  }
+
+  handleDelete(user) {
+    const { users } = this.state;
+
+    this.setState({
+      users: users.filter(u => u.id !== user.id),
+    });
   }
 
   render() {
@@ -102,7 +116,8 @@ class Users extends React.Component {
             </Table.Row>
           </Table.Footer>
         </Table>
-        {/*<UserInfo user={users[0]} />*/}
+        <Button positive onClick={this.handleNewUser}>New User</Button>
+        {/*<UserInfo user={users[0]} handleDelete={this.handleDelete} />*/}
       </Page>
     );
   }

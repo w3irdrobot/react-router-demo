@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
 import styles from './styles.css';
-import FourOhFour from '../FourOhFour';
+import Users from '../Users';
 
 const Cms = () => (
   <div>
@@ -12,7 +12,7 @@ const Cms = () => (
       </Menu.Item>
     </Sidebar>
     <div className={styles.mainBody}>
-      <FourOhFour />
+      <Users />
     </div>
   </div>
 );
