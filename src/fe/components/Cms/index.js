@@ -3,8 +3,8 @@ import { Sidebar, Menu, Icon } from 'semantic-ui-react';
 import styles from './styles.css';
 import FourOhFour from '../FourOhFour';
 
-const App = () => (
-  <div id="app">
+const Cms = () => (
+  <div>
     <Sidebar as={Menu} inverted visible vertical width="thin" icon="labeled">
       <Menu.Item name="users">
         <Icon name="users" />
@@ -17,4 +17,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default Cms;
