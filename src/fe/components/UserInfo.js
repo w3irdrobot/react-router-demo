@@ -19,11 +19,8 @@ class UserInfo extends React.Component {
   }
 
   handleDelete() {
-    const { user, handleDelete } = this.props;
-
     axios.delete('/api/users/1')
       .then(() => {
-        handleDelete(user);
         console.log('user deleted');
       });
   }
