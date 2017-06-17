@@ -1,5 +1,6 @@
 import React from 'react';
 import { get, patch } from 'axios';
+import { Helmet } from 'react-helmet';
 import UserForm from './UserForm';
 import Page from './Page';
 
@@ -7,9 +8,7 @@ class UserEdit extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      user: {},
-    };
+    this.state = { user: { name: '' } };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
@@ -42,6 +41,10 @@ class UserEdit extends React.Component {
 
     return (
       <Page title="Edit User" columns={3}>
+        <Helmet>
+          <title>CMS | Edit {user.name}</title>
+        </Helmet>
+
         <UserForm
           user={user}
           submitText="Update"

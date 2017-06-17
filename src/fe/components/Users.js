@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Menu, Icon, Button } from 'semantic-ui-react';
 import { get } from 'axios';
 import times from 'lodash.times';
+import { Helmet } from 'react-helmet';
 import Page from './Page';
 
 const TOTAL_PER_PAGE = 10;
@@ -82,6 +83,10 @@ class Users extends React.Component {
 
     return (
       <Page title="Users">
+        <Helmet>
+          <title>CMS | Users</title>
+        </Helmet>
+
         <Table celled striped>
           <Table.Header>
             <Table.Row>

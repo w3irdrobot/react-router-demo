@@ -1,6 +1,7 @@
 import React from 'react';
 import { post } from 'axios';
 import UserForm from './UserForm';
+import { Helmet } from 'react-helmet';
 import Page from './Page';
 
 class UserAdd extends React.Component {
@@ -27,6 +28,10 @@ class UserAdd extends React.Component {
   render() {
     return (
       <Page title="Add User" columns={3}>
+        <Helmet>
+          <title>CMS | Add User</title>
+        </Helmet>
+
         <UserForm
           handleSubmit={this.handleSubmit}
           handleCancel={this.handleCancel}

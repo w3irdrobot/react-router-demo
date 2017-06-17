@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Form, Header, Message } from 'semantic-ui-react';
+import { Helmet } from 'react-helmet';
 import styles from './styles.css';
 
 class Login extends React.Component {
@@ -41,6 +42,10 @@ class Login extends React.Component {
 
     return (
       <Grid>
+        <Helmet>
+          <title>CMS | Login</title>
+        </Helmet>
+
         <Grid.Column width={6} />
         <Grid.Column width={4}>
           <Form className={styles.loginForm} error={error} onSubmit={this.onSubmit}>

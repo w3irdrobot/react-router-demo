@@ -1,12 +1,13 @@
 import React from 'react';
 import { Button, Image, Modal } from 'semantic-ui-react';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 class UserInfo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { user: {} };
+    this.state = { user: { name: '' } };
 
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -30,6 +31,10 @@ class UserInfo extends React.Component {
 
     return (
       <Modal open dimmer="blurring">
+        <Helmet>
+          <title>CMS | {user.name}</title>
+        </Helmet>
+
         <Modal.Header>{user.name}</Modal.Header>
         <Modal.Content image>
           <Image wrapped size="small" src={`https://api.adorable.io/avatars/250/${user.email}`} />
