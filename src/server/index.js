@@ -5,6 +5,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { resolve } from 'path';
+import historyFallback from 'connect-history-api-fallback';
 import webpackConfig from '../../webpack.config';
 import users from '../../users.json';
 
@@ -66,13 +67,14 @@ apiRouter.route('/users/:id')
   });
 
 app.use('/api', apiRouter);
+app.use(historyFallback());
 
 if (NODE_ENV === 'production') {
   const FE_DIR = resolve(__dirname, '..', 'client');
 
   app.use(express.static(FE_DIR));
 
-  app.get('/', (req, res) => {
+  app.get('/*', (req, res) => {
     res.sendFile(resolve(FE_DIR, 'index.html'));
   });
 } else {
