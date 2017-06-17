@@ -8,7 +8,7 @@ const Cms = () => (
     <Sidebar as={Menu} inverted visible vertical width="thin" icon="labeled">
       <Menu.Item name="users">
         <Icon name="users" />
-        User
+        Users
       </Menu.Item>
     </Sidebar>
     <div className={styles.mainBody}>
