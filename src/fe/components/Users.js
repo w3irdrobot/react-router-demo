@@ -3,7 +3,6 @@ import { Table, Menu, Icon, Button } from 'semantic-ui-react';
 import { get } from 'axios';
 import times from 'lodash.times';
 import Page from './Page';
-import UserInfo from './UserInfo';
 
 const TOTAL_PER_PAGE = 10;
 
@@ -24,6 +23,16 @@ class Users extends React.Component {
   }
 
   componentDidMount() {
+    this.getUsers();
+  }
+
+  componentWillReceiveProps({ location = {} }) {
+    if (location.pathname === '/users' && location.pathname !== this.props.location.pathname) {
+      this.getUsers();
+    }
+  }
+
+  getUsers() {
     get('/api/users')
       .then(({ data }) => {
         const { users } = data;
@@ -59,11 +68,11 @@ class Users extends React.Component {
     console.log('new user clicked');
   }
 
-  handleDelete(user) {
+  handleDelete(userId) {
     const { users } = this.state;
 
     this.setState({
-      users: users.filter(u => u.id !== user.id),
+      users: users.filter(u => u.id !== userId),
     });
   }
 
@@ -117,7 +126,6 @@ class Users extends React.Component {
           </Table.Footer>
         </Table>
         <Button positive onClick={this.handleNewUser}>New User</Button>
-        {/*<UserInfo user={users[0]} handleDelete={this.handleDelete} />*/}
       </Page>
     );
   }

@@ -6,20 +6,24 @@ class UserInfo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleEdit = this.handleEdit.bind(this);
+    this.state = { user: {} };
+
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleEdit() {
-    const { user } = this.props;
+  componentDidMount() {
+    axios.get('/api/users/1')
+      .then(({ data: user }) => {
+        console.log('user', user);
 
-    console.log('going to edit user', user);
+        this.setState({ user });
+      });
   }
 
   handleDelete() {
     const { user, handleDelete } = this.props;
 
-    axios.delete(`/api/users/${user.id}`)
+    axios.delete('/api/users/1')
       .then(() => {
         handleDelete(user);
         console.log('user deleted');
@@ -27,7 +31,7 @@ class UserInfo extends React.Component {
   }
 
   render() {
-    const { user = {} } = this.props;
+    const { user } = this.state;
 
     return (
       <Modal open dimmer="blurring" closeIcon>
@@ -43,7 +47,7 @@ class UserInfo extends React.Component {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button positive onClick={this.handleEdit}>Edit</Button>
+          <Button positive>Edit</Button>
           <Button negative onClick={this.handleDelete}>Delete</Button>
           <Button>Close</Button>
         </Modal.Actions>
