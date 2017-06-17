@@ -3,6 +3,7 @@ import { Table, Menu, Icon, Button } from 'semantic-ui-react';
 import { get } from 'axios';
 import times from 'lodash.times';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import Page from './Page';
 
 const TOTAL_PER_PAGE = 10;
@@ -94,16 +95,18 @@ class Users extends React.Component {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {users.slice(startIndex, startIndex + TOTAL_PER_PAGE).map(user =>
-              (<Table.Row key={user.id}>
-                <Table.Cell>{user.name}</Table.Cell>
+            {users.slice(startIndex, startIndex + TOTAL_PER_PAGE).map(user => (
+              <Table.Row key={user.id}>
+                <Table.Cell>
+                  <Link to={`/users/${user.id}`}>{user.name}</Link>
+                </Table.Cell>
                 <Table.Cell>{user.email}</Table.Cell>
                 <Table.Cell>{user.phone}</Table.Cell>
                 <Table.Cell>{user.address}</Table.Cell>
                 <Table.Cell>{user.city}</Table.Cell>
                 <Table.Cell>{user.zip}</Table.Cell>
-              </Table.Row>),
-            )}
+              </Table.Row>
+            ))}
           </Table.Body>
           <Table.Footer>
             <Table.Row>
