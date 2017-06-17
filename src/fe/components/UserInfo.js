@@ -14,8 +14,6 @@ class UserInfo extends React.Component {
   componentDidMount() {
     axios.get('/api/users/1')
       .then(({ data: user }) => {
-        console.log('user', user);
-
         this.setState({ user });
       });
   }
@@ -34,7 +32,7 @@ class UserInfo extends React.Component {
     const { user } = this.state;
 
     return (
-      <Modal open dimmer="blurring" closeIcon>
+      <Modal open dimmer="blurring">
         <Modal.Header>{user.name}</Modal.Header>
         <Modal.Content image>
           <Image wrapped size="small" src={`https://api.adorable.io/avatars/250/${user.email}`} />
