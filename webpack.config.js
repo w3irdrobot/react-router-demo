@@ -33,6 +33,7 @@ module.exports = {
   output: {
     filename: `[name].[${HASH_TYPE}].js`,
     path: resolve(ROOT, 'dist', 'client'),
+    publicPath: '/',
   },
   module: {
     rules: [
