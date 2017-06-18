@@ -3,8 +3,9 @@ import { Table, Menu, Icon, Button } from 'semantic-ui-react';
 import { get } from 'axios';
 import times from 'lodash.times';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import Page from './Page';
+import UserInfo from './UserInfo';
 
 const TOTAL_PER_PAGE = 10;
 
@@ -129,6 +130,7 @@ class Users extends React.Component {
           </Table.Footer>
         </Table>
         <Button positive>New User</Button>
+        <Route path="/users/:userId" component={UserInfo} />
       </Page>
     );
   }

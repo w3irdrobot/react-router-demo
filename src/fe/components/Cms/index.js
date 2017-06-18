@@ -6,7 +6,6 @@ import store from 'store';
 import { Route, Link } from 'react-router-dom';
 import styles from './styles.css';
 import Users from '../Users';
-import UserInfo from '../UserInfo';
 
 const handleLogout = () => () => {
   store.remove('loggedIn');
@@ -34,7 +33,6 @@ const Cms = () => {
       </Sidebar>
       <div className={styles.mainBody}>
         <Route path="/users" component={Users} />
-        <Route path="/users/:userId" component={UserInfo} />
       </div>
     </div>
   );
