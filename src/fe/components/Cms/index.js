@@ -3,9 +3,12 @@ import React from 'react';
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import store from 'store';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import styles from './styles.css';
 import Users from '../Users';
+import UserAdd from '../UserAdd';
+import UserEdit from '../UserEdit';
+import FourOhFour from '../FourOhFour';
 
 const handleLogout = () => () => {
   store.remove('loggedIn');
@@ -32,7 +35,12 @@ const Cms = () => {
         </Menu.Item>
       </Sidebar>
       <div className={styles.mainBody}>
-        <Route path="/users" component={Users} />
+        <Switch>
+          <Route path="/users/:userId/edit" component={UserEdit} />
+          <Route path="/users/new" component={UserAdd} />
+          <Route path="/users" component={Users} />
+          <Route component={FourOhFour} />
+        </Switch>
       </div>
     </div>
   );

@@ -129,7 +129,9 @@ class Users extends React.Component {
             </Table.Row>
           </Table.Footer>
         </Table>
-        <Button positive>New User</Button>
+        <Link to="/users/new">
+          <Button positive>New User</Button>
+        </Link>
         <Route path="/users/:userId" component={UserInfo} />
       </Page>
     );

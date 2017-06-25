@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
+import { Prompt } from 'react-router-dom';
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class UserForm extends React.Component {
 
     const { user = {} } = props;
 
-    this.state = { user };
+    this.state = { user, formChanged: false };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,15 +33,19 @@ class UserForm extends React.Component {
   handleChange(e, { name, value }) {
     const { user } = this.state;
 
-    this.setState({ user: { ...user, [name]: value } });
+    this.setState({
+      user: { ...user, [name]: value },
+      formChanged: true,
+    });
   }
 
   render() {
-    const { user: { name, email, phone, address, city, zip } } = this.state;
+    const { user: { name, email, phone, address, city, zip }, formChanged } = this.state;
     const { handleCancel, submitText = 'Create' } = this.props;
 
     return (
       <Form onSubmit={this.handleSubmit}>
+        <Prompt when={formChanged} message="Are you sure you wanna do that?" />
         <Form.Input
           label="Name"
           type="text"

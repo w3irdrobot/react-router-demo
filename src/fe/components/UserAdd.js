@@ -1,7 +1,7 @@
 import React from 'react';
 import { post } from 'axios';
-import UserForm from './UserForm';
 import { Helmet } from 'react-helmet';
+import UserForm from './UserForm';
 import Page from './Page';
 
 class UserAdd extends React.Component {
@@ -14,15 +14,19 @@ class UserAdd extends React.Component {
 
   handleSubmit(user) {
     post('/api/users', user)
-      .then(() => {
-        console.log('added:', user);
+      .then(({ data: u }) => {
+        const { history } = this.props;
+
+        history.push(`/users/${u.id}`);
       });
   }
 
   handleCancel(e) {
     e.preventDefault();
 
-    console.log('you have canceled');
+    const { history } = this.props;
+
+    history.push('/users');
   }
 
   render() {

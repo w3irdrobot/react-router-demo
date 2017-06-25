@@ -52,7 +52,9 @@ class UserInfo extends React.Component {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button positive>Edit</Button>
+          <Link to={`/users/${user.id}/edit`}>
+            <Button positive>Edit</Button>
+          </Link>
           <Button negative onClick={this.handleDelete}>Delete</Button>
           <Link to="/users">
             <Button>Close</Button>
