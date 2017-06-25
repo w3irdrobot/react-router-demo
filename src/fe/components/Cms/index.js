@@ -29,6 +29,17 @@ const Cms = () => {
             Users
           </Menu.Item>
         </Link>
+        <Route
+          path="/users"
+          render={() => (
+            <Link to="/users/new">
+              <Menu.Item name="new-user">
+                <Icon name="plus" />
+                Add a User
+              </Menu.Item>
+            </Link>
+          )}
+        />
         <Menu.Item name="logout" onClick={handleLogout()}>
           <Icon name="power" />
           Logout
