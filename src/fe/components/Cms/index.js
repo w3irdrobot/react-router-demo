@@ -7,6 +7,10 @@ import styles from './styles.css';
 import Users from '../Users';
 
 const isLoggedIn = () => !!store.get('loggedIn'); // eslint-disable-line no-unused-vars
+const handleLogout = () => () => {
+  store.remove('loggedIn');
+  console.log('you have been logged out. boo!');
+};
 
 const Cms = () => {
   return (
@@ -19,6 +23,10 @@ const Cms = () => {
         <Menu.Item name="users">
           <Icon name="users" />
           Users
+        </Menu.Item>
+        <Menu.Item name="logout" onClick={handleLogout()}>
+          <Icon name="power" />
+          Logout
         </Menu.Item>
       </Sidebar>
       <div className={styles.mainBody}>
