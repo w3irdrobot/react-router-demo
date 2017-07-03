@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Form, Header, Message } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
+import store from 'store';
 import styles from './styles.css';
 
 class Login extends React.Component {
@@ -17,6 +18,10 @@ class Login extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    console.log('loggedIn', store.get('loggedIn'));
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -24,11 +29,12 @@ class Login extends React.Component {
 
     this.setState({ error: false });
 
-    if (username === 'george' && password === 'foreman') {
-      return console.log('good job!');
+    if (!(username === 'george' && password === 'foreman')) {
+      return this.setState({ error: true });
     }
 
-    this.setState({ error: true });
+    console.log("you're logged in. yay!");
+    store.set('loggedIn', true);
   }
 
   handleChange(e, { name, value }) {
