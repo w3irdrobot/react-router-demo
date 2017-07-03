@@ -3,6 +3,7 @@ import { Grid, Form, Header, Message } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import store from 'store';
 import styles from './styles.css';
+import isLoggedIn from '../../helpers/is_logged_in';
 
 class Login extends React.Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    console.log('loggedIn', store.get('loggedIn'));
+    if (isLoggedIn()) {
+      console.log('you are logged in!');
+    }
   }
 
   onSubmit(e) {

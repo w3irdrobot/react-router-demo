@@ -6,7 +6,6 @@ import store from 'store';
 import styles from './styles.css';
 import Users from '../Users';
 
-const isLoggedIn = () => !!store.get('loggedIn'); // eslint-disable-line no-unused-vars
 const handleLogout = () => () => {
   store.remove('loggedIn');
   console.log('you have been logged out. boo!');
