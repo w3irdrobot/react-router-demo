@@ -3,19 +3,24 @@ import React from 'react';
 import { Sidebar, Menu, Icon } from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 import store from 'store';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import isLoggedIn from '../../helpers/is_logged_in';
 import styles from './styles.css';
 import Users from '../Users';
 import UserAdd from '../UserAdd';
 import UserEdit from '../UserEdit';
 import FourOhFour from '../FourOhFour';
 
-const handleLogout = () => () => {
+const handleLogout = history => () => {
   store.remove('loggedIn');
-  console.log('you have been logged out. boo!');
+  history.push('/login');
 };
 
-const Cms = () => {
+const Cms = ({ history }) => {
+  if (!isLoggedIn()) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <div>
       <Helmet>
@@ -40,7 +45,7 @@ const Cms = () => {
             </Link>
           )}
         />
-        <Menu.Item name="logout" onClick={handleLogout()}>
+        <Menu.Item name="logout" onClick={handleLogout(history)}>
           <Icon name="power" />
           Logout
         </Menu.Item>

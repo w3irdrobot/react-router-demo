@@ -1,10 +1,14 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Cms from './Cms';
+import Login from './Login';
 
 const App = () => (
   <div className="app-routes">
-    <Route path="/" component={Cms} />
+    <Switch>
+      <Route path="/login" component={Login} />
+      <Route path="/" component={Cms} />
+    </Switch>
   </div>
 );
 
