@@ -7,7 +7,7 @@ Simple dashboard page to show off React Router. This is the repository to go alo
 To get started, download the repo, install the dependencies, and run the production server.
 
 ```
-git clone https://github.com/searsaw/react-router-demo.git
+git clone https://github.com/scotch-io/react-router-course.git
 cd react-router-demo
 yarn
 NODE_ENV=production yarn start
