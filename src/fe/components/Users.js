@@ -19,7 +19,6 @@ class Users extends React.Component {
     this.incrementPage = this.incrementPage.bind(this);
     this.decrementPage = this.decrementPage.bind(this);
     this.setPage = this.setPage.bind(this);
-    this.handleNewUser = this.handleNewUser.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
@@ -63,10 +62,6 @@ class Users extends React.Component {
     const { page } = this.state;
 
     this.setState({ page: page + 1 });
-  }
-
-  handleNewUser() {
-    console.log('new user clicked');
   }
 
   handleDelete(userId) {
@@ -130,7 +125,7 @@ class Users extends React.Component {
             </Table.Row>
           </Table.Footer>
         </Table>
-        <Button positive onClick={this.handleNewUser}>New User</Button>
+        <Button positive>New User</Button>
       </Page>
     );
   }
