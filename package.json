@@ -17,7 +17,6 @@
     "build:client": "webpack",
     "build": "npm run build:client && npm run build:server",
     "dev": "nodemon --ignore dist/ --ignore src/ --exec \"npm run build:server && node dist/server/index.js\"",
-    "prestart": "npm run build",
     "start": "node dist/server/index.js"
   },
   "devDependencies": {
